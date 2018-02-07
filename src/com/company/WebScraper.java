@@ -8,6 +8,27 @@ public class WebScraper {
         System.out.println(countWords("http://erdani.com/tdpl/hamlet.txt"));
         System.out.println(countWords("https://www.bls.gov/tus/charts/chart9.txt"));
         System.out.println(countWords("http://tgftp.nws.noaa.gov/data/raw/fz/fzus53.klot.srf.lot.txt"));
+
+        System.out.println(repeats("http://erdani.com/tdpl/hamlet.txt", "Prince"));
+
+
+    }
+
+    public static int repeats(String url, String word) {
+        int prev = 0;
+        int count = 0;
+        word = word.toLowerCase();
+        String text = urlToString(url).toLowerCase();
+        while(prev != -1){
+
+            prev = text.indexOf(word,prev);
+
+            if(prev != -1){
+                count ++;
+                prev += word.length();
+            }
+        }
+        return count;
     }
 
     public static int countWords(String url) {
